@@ -1,4 +1,5 @@
-# 📦 Streamlit App Starter Kit 
+# 😎 Machine Learning App
+This is a machine Learning App
 ```
 ⬆️ (Replace above with your app's name)
 ```

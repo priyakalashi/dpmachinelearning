@@ -12,7 +12,7 @@ with st.expander('Data'):
   st.write('**Raw Data**')
   df = pd.read_csv('https://raw.githubusercontent.com/dataprofessor/data/master/penguins_cleaned.csv')
   df
-
+"""
   st.write('**X**')
   X_raw = df.drop(columns='species',axis=1)
   X_raw
@@ -112,5 +112,5 @@ st.dataframe(df_prediction_proba,
 
 penguin_species = np.array(['Adelie','Chinstrap','Gentoo'])
 st.success(str(penguin_species[prediction][0])) 
-
+"""
 

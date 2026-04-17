@@ -14,6 +14,6 @@ with st.expander('Data'):
   df
   st.write('**X**')
   X_raw = df.drop(columns='species')
-  
+  X_raw
 
   

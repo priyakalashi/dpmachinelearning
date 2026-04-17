@@ -15,5 +15,8 @@ with st.expander('Data'):
   st.write('**X**')
   X_raw = df.drop(columns='species')
   X_raw
+  st.write('**Y**')
+  Y_raw = df.species
+  Y_raw
 
   

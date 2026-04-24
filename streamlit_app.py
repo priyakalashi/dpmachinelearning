@@ -43,5 +43,75 @@ with st.sidebar:
   input_df = pd.DataFrame(data,index=[0])
   input_penguins = pd.concat([input_df,X_raw], axis=0)
 
+#encode cat column
+encode = ['island','sex']
+df_penguins = pd.get_dummies(input_penguins,prefix=encode)
+X = df_penguins[1:]
+input_row = df_penguins[:1]
+
+# encode Y
+target_mapper = {
+  'Adelie' : 0,
+  'Chinstrap' : 1,
+  'Gentoo' : 2,
+}
+
+def target_encode(val):
+  return target_mapper[val]
+
+y = Y_raw.apply(target_encode)
+
+with st.expander('Input Features'):
+  st.write('**Input**')
+  input_df
+  st.write('**Combined Input Features**')
+  input_penguins
+
+with st.expander('Data Preparation'):
+  st.write('**Encoded X**')
+  input_row
+  st.write('**Y**')
+  y
+
+
+# Machine Learning Training
+clf = RandomForestClassifier()
+clf.fit(X,y)
+prediction = clf.predict(input_row)
+prediction_proba = clf.predict_proba(input_row)
+df_prediction_proba = pd.DataFrame(prediction_proba)
+# df_prediction_proba.rename(columns={0:'Adelie',
+#                                 1:'Chinstrap',
+#                                 2:'Gentoo'})
+df_prediction_proba.columns = ['Adelie','Chinstrap','Gentoo']
+
+st.subheader('Predicted Species')
+
+
+st.dataframe(df_prediction_proba,
+            column_config={
+              'Adelie':st.column_config.ProgressColumn(
+              'Adelie',
+              width='medium',
+              format='%f',
+            ),
+              'Chinstrap':st.column_config.ProgressColumn(
+              'Chinstrap',
+              width='medium',
+              format='%f',
+            ),
+              'Gentoo':st.column_config.ProgressColumn(
+              'Gentoo',
+              width='medium',
+              format='%f',
+            )
+              },hide_index=True)
+
+penguin_species = np.array(['Adelie','Chinstrap','Gentoo'])
+st.success(str(penguin_species[prediction][0])) 
+"""
+
+
+
 
   

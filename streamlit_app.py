@@ -23,6 +23,9 @@ with st.expander('Data Visualization'):
 
 with st.sidebar:
   st.header('Input features')
+  st.sidebar.markdown("""
+[Example CSV input file](https://raw.githubusercontent.com/dataprofessor/data/master/penguins_example.csv)
+""")
   island = st.selectbox('Island',('Biscoe','Dream','Torgersen'))
   bill_length_mm = st.slider('Bill Length (mm)', 32.1, 59.6, 43.9)
   bill_depth_mm = st.slider('Bill Depth (mm)', 13.1, 21.5, 17.2)
